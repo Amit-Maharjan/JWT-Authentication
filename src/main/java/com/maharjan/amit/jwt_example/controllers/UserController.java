@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -18,5 +19,10 @@ public class UserController {
     @GetMapping("/list")
     public List<User> getUsers(){
         return userService.getUsers();
+    }
+
+    @GetMapping("/currentUser")
+    public String getLoggedInUser(Principal principal){
+        return principal.getName();
     }
 }
